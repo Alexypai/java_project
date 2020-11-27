@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface ArtistRepository extends JpaRepository<Artist, Long> {
 
 
-    Page<Artist> findAllByName(String name, Pageable pageable);
-
 
     Page<Artist> findAllByNameContainingIgnoreCase(String name, Pageable pageable);
 

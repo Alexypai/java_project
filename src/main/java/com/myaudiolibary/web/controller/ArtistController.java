@@ -36,9 +36,9 @@ public class ArtistController {
         }
     }
 
-    @RequestMapping(params = {"name"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value ="")
+    @RequestMapping(params = {"Name"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value ="")
     public Page<Artist> SearchArtist(
-            @RequestParam("name") String name,
+            @RequestParam("Name") String name,
             @RequestParam Integer page,
             @RequestParam Integer size,
             @RequestParam String sortProperty,
@@ -82,7 +82,7 @@ public class ArtistController {
 
     @RequestMapping(method = RequestMethod.DELETE, value ="/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT) //204
-    public void SuppArtist(@PathVariable Long id){
+    public void DelArtist(@PathVariable Long id){
 
         artistRepository.deleteById(id);
     }

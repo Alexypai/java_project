@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
     public interface AlbumRepository extends JpaRepository<Album, Long> {
 
         boolean existsByTitle(String title);
-
     }

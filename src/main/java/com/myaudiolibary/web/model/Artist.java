@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "artist")
 public class Artist {
 
     @Id
@@ -40,5 +41,11 @@ public class Artist {
         this.name = name;
     }
 
+    public List<Album> getAlbums() {
+        return Albums;
+    }
 
+    public void setAlbums(List<Album> albums) {
+        Albums = albums;
+    }
 }

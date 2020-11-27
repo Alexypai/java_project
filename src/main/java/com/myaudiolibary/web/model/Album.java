@@ -3,6 +3,7 @@ package com.myaudiolibary.web.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name="album")
 public class Album {
 
     @Id
@@ -14,7 +15,7 @@ public class Album {
     private String title;
 
     @ManyToOne
-    @JoinColumn(name = "ArtistId", nullable = false)
+    @JoinColumn(name = "ArtistId")
     private Artist artist;
 
     public Album() {
@@ -44,5 +45,8 @@ public class Album {
     public void setArtist(Artist artist) {
         this.artist = artist;
     }
+
+
+
 }
 
