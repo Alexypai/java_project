@@ -36,9 +36,9 @@ public class ArtistController {
         }
     }
 
-    @RequestMapping(params = {"Name"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value ="")
+    @RequestMapping(params = {"name"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, value ="")
     public Page<Artist> SearchArtist(
-            @RequestParam("Name") String name,
+            @RequestParam("name") String name,
             @RequestParam Integer page,
             @RequestParam Integer size,
             @RequestParam String sortProperty,
@@ -68,6 +68,8 @@ public class ArtistController {
     public Artist NewArtist(@RequestBody Artist Artist) throws ConflictException {
         if (artistRepository.existsByName(Artist.getName()) == true) {
             throw new ConflictException("Le nom de l'artiste " + Artist.getName() + "  est deja utilisé");
+        } else if (Artist.getName() == null) {
+            throw new IllegalArgumentException ("Le champs ajouté est vide");
         } else {
             return artistRepository.save(Artist);
         }

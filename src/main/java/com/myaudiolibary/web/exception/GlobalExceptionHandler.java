@@ -29,4 +29,5 @@ public class GlobalExceptionHandler {
             IllegalArgumentException illegalArgumentException) {
         return illegalArgumentException.getMessage();
     }
+
 }

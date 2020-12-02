@@ -17,9 +17,9 @@ public class Artist {
     @Column(name = "Name")
     private String name;
 
-    @OneToMany(mappedBy = "artist")
+    @OneToMany(mappedBy = "artist", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE) // orphanRemoval = true
     @JsonIgnoreProperties("artist")
-    private List<Album> Albums;
+    private List<Album> albums;
 
 
     public Artist() {
@@ -42,10 +42,10 @@ public class Artist {
     }
 
     public List<Album> getAlbums() {
-        return Albums;
+        return albums;
     }
 
     public void setAlbums(List<Album> albums) {
-        Albums = albums;
+        this.albums = albums;
     }
 }
