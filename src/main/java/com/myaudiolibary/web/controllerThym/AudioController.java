@@ -33,12 +33,14 @@ public class AudioController {
         return "detailArtist";
     }
 
+
+
     @GetMapping( value ="")
     public String listesArtist(
-            @RequestParam Integer page,
-            @RequestParam Integer size,
-            @RequestParam String sortProperty,
-            @RequestParam String sortDirection,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer size,
+            @RequestParam(defaultValue = "ASC") String sortProperty,
+            @RequestParam(defaultValue = "name") String sortDirection,
             final ModelMap Liste){
 
         PageRequest pageRequest = PageRequest.of(page,size, Sort.Direction.valueOf(sortDirection),sortProperty);
@@ -55,11 +57,12 @@ public class AudioController {
 
         return "listeArtists";
     }
+
     @GetMapping(value = "", params = "name")
     public String searchArtistsbyName(@RequestParam(required = true) String name, final ModelMap model){
-        model.addAttribute("model", artistRepository.findByName(name));
-        model.addAttribute("page", "employeDetail");
-        model.addAttribute("fragment", "employeDetail");
+        Artist Nartist = artistRepository.findByName(name);
+        //Ici il faudrait gérer l'erreur 404 !
+        model.put("artist", Nartist);
         return "detailArtist";
     }
 
