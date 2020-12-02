@@ -19,8 +19,8 @@
 						<label for="title" class="form-control-label">Albums</label>
 						<div class="row">
 							<div class="col-lg-10">
-								<div class="list-group">
-									<li class="list-group-item" th:value="${artist.albums.title}" name="title" id="title" >Let Th Rock</li>
+								<div class="list-group" th:each="album : ${artist.albums}">
+									<li class="list-group-item" th:text="${album.title}" name="title" id="title" >Let Thk</li>
 								</div>
 							</div>
 							<div class="col-lg-2 text-center">
