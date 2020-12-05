@@ -27,7 +27,7 @@
 							</div>
 							<div class="col-lg-2 text-center">
 								<div class="list-group text-center" th:each="album : ${artist.albums}">
-									<a class="btn-danger list-group-item list-group-item-action" th:if="${album.title}"><span class="glyphicon glyphicon-remove"><a th:href="'thym/artists/'+${album.Artist}+'/Album/'+${album.id}+'/delete'"></a></span></button>
+									<a th:href="'thym/artists/'+${album.artist}+'/Album/'+${album.id}+'/delete'"><button class="btn-danger list-group-item list-group-item-action" th:if="${album.title}"><span class="glyphicon glyphicon-remove"></span></button></a>
 								</div>
 							</div>
 						</div>
