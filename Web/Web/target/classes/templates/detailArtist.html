@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: head"></head>
+<body class="ember-application">
+
+	<div>
+		<nav th:replace="fragments/nav :: navi"></nav>
+
+		<div class="container">
+			<h2>Détail de l'artiste [[${artist.name}]] </h2>
+
+			<form id="saveForm" th:action="'/thym/artists/'" method="post" class="row">
+				<input type="hidden" th:value="${artist.id}" name="id">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label for="name" class="form-control-label">Nom</label>
+						<input type="text" id="name" name="name" class="form-control" th:value="${artist.name}">
+					</div>
+				</div>
+			</div>
+			</form>
+			<div class="row">
+				<button form="saveForm" class="btn btn-primary" value="Enregistrer">Enregistrer</button>
+				<a style="color: white" th:href="'/thym/artists/'+${artist.id}+'/delete'"><button class="btn btn-danger">Supprimer</button></a>
+			</div>
+			<br>
+			<label class="form-control-label">Albums</label>
+			<div class="row">
+					<div class="col-lg-10 text-center">
+						<div class="list-group" th:each="album : ${artist.albums}">
+							<form id="saveFo" action="/thym/albums" method="post">
+								<input readonly="readonly" class="form-control ember-text-field ember-view" th:value="${album.title}" id="title" name="title" >
+								<input type="hidden" class="form-control ember-text-field ember-view" id="id" name="id" th:value="${album.id}"/>
+								<input type="hidden" class="form-control ember-text-field ember-view" id="artist" name="artist" th:value="${artist.id}"/>
+							</form>
+						</div>
+					</div>
+				<div class="col-lg-2 text-center">
+					<div class="list-group text-center" th:each="album : ${artist.albums}">
+						<form  th:action="'/thym/albums/' +${album.id}" th:method="delete">
+							<button class="btn-danger list-group-item list-group-item-action" th:href="'/thym/albums/' +${artist.id}" >
+								<span class="glyphicon glyphicon-remove"></span>
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+
+			<form id="saveFor" action="/thym/albums" method="post">
+				<div class="row">
+					<div class="col-lg-10">
+						<div class="list-group">
+							<input type="text" th:if="${artist.id!=null}" placeholder="Ajouter un album..." class="form-control ember-text-field ember-view" id="title" name="title"/>
+							<input type="hidden" class="form-control ember-text-field ember-view" id="artist" name="artist" th:value="${artist.id}"/>
+						</div>
+					</div>
+					<div class="col-lg-2 text-center">
+						<div class="list-group text-center">
+							<button th:if="${artist.id!=null}" form="saveFor" class="btn btn-primary" value="Enregistrer">Enregistrer</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
